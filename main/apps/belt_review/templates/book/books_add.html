@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Dojos</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="/books">Home</a></li>
+                <li><a href="/signOut">Logout</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container jumbotron">
+        <h3>Add a New Book Title and a Review</h3>
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }} alert alert-danger fade in" {% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        <div class="col-sm-9">
+            <form action="/book/added/{{num}}" method='post'>
+                {% csrf_token %}
+                <div class="form-group">
+                    Book Title: <input type='text' class="form-control" id="title" name="title"> 
+                    <h5>Author:</h5><br>
+                    <select name="authorDD">Other
+                    {% for author in authors %}    
+                            <option value="{{author.author}}">{{author.author}}</option>
+                    {% endfor %}
+                    </select>
+                    <br>
+                    Or add a new author: <input type='text' class="form-control" id="author" name="author">
+                    Review:
+                    <div class="form-group">
+                        <textarea class="form-control" rows="5" id="review" name="review"></textarea>
+                    </div>
+                    Rating: <select name="rating">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-normal btn-right">Add Book Review</button>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>

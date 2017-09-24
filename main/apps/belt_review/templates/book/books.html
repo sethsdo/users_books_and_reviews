@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Books</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <style>
+            .content{
+                height:200px;
+                width:100%;
+                border:1px solid #747474;
+                overflow:auto;
+        }
+        </style>
+    </head>
+    <body>
+        <nav class="navbar navbar-inverse">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <h2 class="navbar-brand">Welcome <a href="/user_info/{{user.id}}">{{user.name}}</a></h2>
+                </div>
+                <ul class="nav navbar-nav" style="float: right;">
+                    <li><a href="/books/add/{{user.id}}">Add Book and Review</a></li>
+                    <li><a href="/signOut">Logout</a></li>
+                </ul>
+            </div>
+        </nav>
+        <div class="container">
+            <div class="col-sm-6">
+                <h3>Recent Book Reviews:</h3>
+                    <h3><a href="/books/{{recent.id}}">{{ recent.title }}</a></h3>
+                    <h3><a href="/books/{{recent1.id}}">{{ recent1.title }}</a></h3>
+                    <h3><a href="/books/{{recent2.id}}">{{ recent2.title }}</a></h3>
+                <div>
+                    <h3>Raiting {{review.raiting}}</h3>
+                    <p><a href=""></a></p>
+                    <p>review</p>
+                    <p></p>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <h3>Other Book Reviews</h3>
+                <h3>Whats Up  </h3>
+                <div>
+                    <h3>book title</h3>
+                    <h4>Activities:</h4>
+                    <div class="content">
+                        {% for book in books %}
+                            <a href="/books/{{book.id}}">{{book.title}}</a>
+                            <br>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

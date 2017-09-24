@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Books</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="/books">Home</a></li>
+                <li><a href="/books/add/{{user.id}}">Add Book and Review</a></li>
+                <li><a href="/logOut">Logout</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container">
+        <h4>User Alies: {{user.alias}}</h4>
+        <h4>Name: {{user.name}}</h4>
+        <h4>Email: {{user.email}}</h4>
+        <h4>Total Rewiews: {{count}}</h4>
+        <h4 style="margin-top:20px;">Posted Reviews on the following books:</h4>
+        {% for review in reviews %}
+            <p style="margin-left: 30px;">{{review.review}}</p>
+        {% endfor %}
+    </div>
+</body>
+
+</html>
