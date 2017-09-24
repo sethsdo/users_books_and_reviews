@@ -30,8 +30,8 @@ def register(request):
         user_email = request.POST['email']
         request.session['current_user'] = request.POST['email']
         query = user.objects.get(email=user_email)
-        #print query
-        return redirect('/books')
+        print query
+    return redirect('/books')
 
 
 def signIn(request):
@@ -59,6 +59,8 @@ def signIn(request):
 
 def books(request):
     print "hello"
+    if book.objects.count() < 3:
+        return render(request, 'book/books.html')
     count = book.objects.count()
     count
     books = book.objects.get(id=count)
